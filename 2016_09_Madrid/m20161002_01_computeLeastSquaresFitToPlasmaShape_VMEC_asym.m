@@ -734,8 +734,11 @@ end
                 % Locations of ITER CS and PF coils.
                 % Based on page 15 of C:\Users\landreman\Box Sync\work15\ITER equilibrium from
                 % Geri\IDM\Plasma_equilibrium_operational_space_dur_2ENZF5_v2_0.unzipped\Operating space 15MA\Operating space 15MA-Report.pdf
-                coils_R = [1.722,1.722,1.722,1.722,1.722,1.722,3.9431,8.2847,11.9923,11.9628,8.3910,4.3340];
-                coils_Z = [-5.313,-3.188,-1.063,1.063,3.188,5.313,7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760];
+                coils_R = [3.9431,8.2847,11.9923,11.9628,8.3910,4.3340,1.722,1.722,1.722,1.722,1.722,1.722];
+                coils_Z = [7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760,5.313,3.188,1.063,-1.063,-3.188,-5.313];
+                % Below are the original lines, which I think do not correspond to the order in the vmec EXTCUR array:
+                %coils_R = [1.722,1.722,1.722,1.722,1.722,1.722,3.9431,8.2847,11.9923,11.9628,8.3910,4.3340];
+                %coils_Z = [-5.313,-3.188,-1.063,1.063,3.188,5.313,7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760];
                 assert(numel(coils_R) == numel(coils_Z));
                 Ncoils = numel(coils_R);
                 if NcoilsMultiplier>1
@@ -759,16 +762,16 @@ end
                 assert(numel(coils_R) == numel(coils_Z));
                 Ncoils = numel(coils_R);
             case 3
-                coils_R = [1.722,1.722,1.722,1.722,1.722,1.722,3.9431,8.2847,11.9923,11.9628,8.3910,4.3340];
-                coils_Z = [-5.313,-3.188,-1.063,1.063,3.188,5.313,7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760];
+                coils_R = [3.9431,8.2847,11.9923,11.9628,8.3910,4.3340,1.722,1.722,1.722,1.722,1.722,1.722];
+                coils_Z = [7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760,5.313,3.188,1.063,-1.063,-3.188,-5.313];
                 coils_R(end+1) = (coils_R(9)+coils_R(10))/2;
                 %coils_Z(end+1) = (coils_Z(9)+coils_Z(10))/2;
                 coils_Z(end+1) = 0;
                 assert(numel(coils_R) == numel(coils_Z));
                 Ncoils = numel(coils_R);
             case 4
-                coils_R = [1.722,1.722,1.722,1.722,1.722,1.722,3.9431,8.2847,11.9923,11.9628,8.3910,4.3340];
-                coils_Z = [-5.313,-3.188,-1.063,1.063,3.188,5.313,7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760];
+                coils_R = [3.9431,8.2847,11.9923,11.9628,8.3910,4.3340,1.722,1.722,1.722,1.722,1.722,1.722];
+                coils_Z = [7.5637,6.5298,3.2652,-2.2436,-6.7365,-7.4760,5.313,3.188,1.063,-1.063,-3.188,-5.313];
                 
                 % Add coil at outboard midplane:
                 coils_R(end+1) = (coils_R(9)+coils_R(10))/2;
