@@ -3,24 +3,14 @@ function m20160930_01_BNormalForVMEC()
 doVirtualCasing = true;
 %doVirtualCasing = false;
 
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape_numModes100';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape_numModes400';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape_psiN0p995_numModes100';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape_psiN0p995_numModes256';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\m20160118_01_smoothDivertorShape_matlabInput_20160119_12_53_15.dat';
-%filename_Fourier = 'C:\Users\landreman\Box Sync\work15\bdistrib\ITER_plasma_shape_psiN0p995_numModes45_newTheta';
-
 % Number of grid points in theta on which to evaluate B_normal:
 nu_plasma = 128;
 
 % Amount to displace virtual casing evaluation from actual plasma surface:
 delta = -0.05;
 
-filename = '/Users/mattland/Box Sync/work16/wout_ellipse3_tilted.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse2.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_ellipse_mediumRes.nc';
+filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse_20160930-01-039.nc';
+%filename = '/Users/mattland/Box Sync/work16/wout_verticalEllipse_20160930-01-037.nc';
 
 %compare_to_bnorm_code = true;
 compare_to_bnorm_code = false;

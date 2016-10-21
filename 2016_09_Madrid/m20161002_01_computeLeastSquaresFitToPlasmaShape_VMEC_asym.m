@@ -37,16 +37,14 @@ filament_option = 1;
 coil_width = 1;
 NFilaments_per_side = 10;
 
-%filename = '/Users/mattland/Box Sync/work16/wout_ellipse1_vertical_lasym_F.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_ellipse2_vertical_lasym_T.nc';
-filename = '/Users/mattland/Box Sync/work16/wout_ellipse3_tilted.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse2.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse.nc';
-%filename = '/Users/mattland/Box Sync/work16/wout_ellipse_mediumRes.nc';
+filename = '/Users/mattland/Box Sync/work16/wout_tiltedEllipse_20160930-01-039.nc';
+%filename = '/Users/mattland/Box Sync/work16/wout_verticalEllipse_20160930-01-037.nc';
 
-bnormFilename = '/Users/mattland/Box Sync/work16/m20160930_01_BNormalForVMEC_nu128_20161004_11_09_33.dat';
+bnormFilename = '/Users/mattland/Box Sync/work16/m20160930_01_BNormalForVMEC_nu128_20161021_11_05_06.dat';
+%bnormFilename = '/Users/mattland/Box Sync/work16/m20160930_01_BNormalForVMEC_nu128_20161021_10_28_23.dat';
 
-psiPlasmaFilename = '/Users/mattland/Box Sync/work16/m20161002_01_computeLeastSquaresFitToPlasmaShape_VMEC_asym_Ellipse_20161004_11_15_11.mat';
+psiPlasmaFilename = '/Users/mattland/Box Sync/work16/m20161002_01_computeLeastSquaresFitToPlasmaShape_VMEC_asym_tiltedEllipse_20161021_11_08_33.mat';
+%psiPlasmaFilename = '/Users/mattland/Box Sync/work16/m20161002_01_computeLeastSquaresFitToPlasmaShape_VMEC_asym_Ellipse_20161021_10_35_17.mat';
 
 shape = 'tiltedEllipse';
 %shape = 'Ellipse';
@@ -984,12 +982,31 @@ end
         
         fprintf('Condition number of matrix: %g\n',cond(matrix))
         solution = matrix \ RHS;
-        fprintf('Solution for coil currents:\n')
-        solution
         if constraintTotalCurrentToVanish
-            fprintf('The last element of the above list is the Lagrange multiplier, not a coil current.\n')
+            %fprintf('The last element of the above list is the Lagrange multiplier, not a coil current.\n')
             solution(end) = [];
         end
+        %{
+        fprintf('Solution for coil currents:\n')
+        solution
+        fprintf('\n! VMEC inputs with no extra minus sign and no scale:\n')
+        for j=1:12
+            fprintf('! EXTCUR(%d)=%e\n',j,solution(j))
+        end
+        fprintf('\n! VMEC inputs with an extra minus sign and no scale:\n')
+        for j=1:12
+            fprintf('! EXTCUR(%d)=%e\n',j,-solution(j))
+        end
+        fprintf('\n! VMEC inputs with no extra minus sign, scaled by 0.01:\n')
+        for j=1:12
+            fprintf('! EXTCUR(%d)=%e\n',j,solution(j)/100)
+        end
+        %}
+        fprintf('\n! VMEC inputs with an extra minus sign, scaled by 0.01:\n')
+        for j=1:12
+            fprintf('  EXTCUR(%d)=%e\n',j,-solution(j)/100)
+        end
+        
         
         %------------------------------------------------------------
         % Plot stuff
@@ -1059,7 +1076,7 @@ if max_contour<0
 end
 contours = linspace(min_contour,max_contour,40);
         %}
-        Rmask = R1D>3 & R1D<9;
+        Rmask = R1D>3 & R1D<10;
         %Rmask = R1D>2.5 & R1D<10;
         Zmask = Z1D<5.5 & Z1D>-6;
         %mask = R1D>2.5;
